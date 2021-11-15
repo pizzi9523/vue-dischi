@@ -2,7 +2,6 @@
   <div id="app">
     <SiteHeader />
     <SiteMain />
-    <SiteFooter />
 
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>
