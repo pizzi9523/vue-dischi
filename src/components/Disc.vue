@@ -1,15 +1,19 @@
 <template>
-  <div class="row justify-content-center p-5 text-center">
-    <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
-      <div class="disc">
-        <img class="p-4" :src="disc.poster" alt="" />
-        <h2 class="disc_title text-light fs-2">
-          {{ disc.title.toUpperCase() }}
-        </h2>
-        <div class="disc_author fs-4">{{ disc.author }}</div>
-        <div class="disc_year fs-4">{{ disc.year }}</div>
+  <div>
+    <div class="row justify-content-center p-5 text-center" v-if="!loading">
+      <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
+        <div class="disc">
+          <img class="p-4" :src="disc.poster" alt="" />
+          <h2 class="disc_title text-light fs-2">
+            {{ disc.title.toUpperCase() }}
+          </h2>
+          <div class="disc_author fs-4">{{ disc.author }}</div>
+          <div class="disc_year fs-4">{{ disc.year }}</div>
+        </div>
       </div>
     </div>
+
+    <div class="display-1 text-light p-5" v-else>Loading...</div>
   </div>
 </template>
 
@@ -19,19 +23,26 @@ export default {
   data() {
     return {
       discs: [],
+      loading: true,
     };
   },
   mounted() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((response) => {
-        console.log(response.data.response);
-        this.discs = response.data.response;
-        console.log(this.discs);
-      })
-      .catch((error) => {
-        console.log(error, "ERRORE");
-      });
+    setTimeout(this.callApi, 6 * 1000);
+  },
+  methods: {
+    callApi() {
+      axios
+        .get("https://flynn.boolean.careers/exercises/api/array/music")
+        .then((response) => {
+          //console.log(response.data.response);
+          this.discs = response.data.response;
+          this.loading = false;
+          //console.log(this.discs);
+        })
+        .catch((error) => {
+          console.log(error, "ERRORE");
+        });
+    },
   },
 };
 </script>
