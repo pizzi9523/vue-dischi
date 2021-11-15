@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-content-center p-3 text-center">
+  <div class="row justify-content-center p-5 text-center">
     <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
       <div class="disc">
         <img class="p-4" :src="disc.poster" alt="" />
