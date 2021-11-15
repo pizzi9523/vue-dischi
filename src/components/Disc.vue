@@ -2,9 +2,9 @@
   <div>
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
       <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
-        <div class="disc">
-          <img class="p-4" :src="disc.poster" alt="" />
-          <h2 class="disc_title text-light fs-2">
+        <div class="disc p-3">
+          <img class="p-2" :src="disc.poster" alt="" />
+          <h2 class="disc_title text-light p-2">
             {{ disc.title.toUpperCase() }}
           </h2>
           <div class="disc_author fs-4">{{ disc.author }}</div>
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="display-1 text-light p-5" v-else>Loading...</div>
+    <div class="display-5 text-light p-5" v-else>Loading...</div>
   </div>
 </template>
 
@@ -52,6 +52,10 @@ export default {
   height: 100%;
   margin: 10px;
   background-color: #2e3a46;
+  &:hover {
+    background-color: #103d64;
+    cursor: pointer;
+  }
   img {
     width: 100%;
   }
