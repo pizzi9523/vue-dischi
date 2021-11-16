@@ -123,5 +123,9 @@ export default {
 
 .filterBox {
   display: inline-block;
+  select {
+    border-radius: 1rem;
+    padding: 5px;
+  }
 }
 </style>
