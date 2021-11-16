@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FilterBox />
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
       <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
         <div class="disc p-3">
@@ -19,6 +20,7 @@
 
 <script>
 import axios from "axios";
+import FilterBox from "./FilterBox.vue";
 export default {
   data() {
     return {
@@ -26,8 +28,13 @@ export default {
       loading: true,
     };
   },
+
+  components: {
+    FilterBox,
+  },
+
   mounted() {
-    setTimeout(this.callApi, 6 * 1000);
+    setTimeout(this.callApi, 4 * 1000);
   },
   methods: {
     callApi() {
