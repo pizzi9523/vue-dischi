@@ -6,14 +6,11 @@
       id="selectGenre"
       @change="$emit('filter-genre', genreSelected)"
     >
-      <option value="">test</option>
       <option value="">All</option>
-      <option value="Rock">Rock</option>
-      <option value="Pop">Pop</option>
-      <option value="Jazz">Jazz</option>
-      <option value="Metal">Metal</option>
+      <option v-for="genre in generi" :key="genre" :value="genre">
+        {{ genre }}
+      </option>
     </select>
-    <button class="p-5" @click="generi">TEST</button>
   </div>
 </template>
 
@@ -22,7 +19,6 @@ export default {
   data() {
     return {
       genreSelected: "",
-      allGenre: [],
     };
   },
 
@@ -30,7 +26,7 @@ export default {
     dischi: Array,
   },
 
-  methods: {
+  computed: {
     generi() {
       // console.log(this.dischi);
       const allGenre = [];

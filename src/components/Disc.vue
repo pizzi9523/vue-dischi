@@ -1,6 +1,7 @@
 <template>
   <div>
-    <FilterGenreBox @filter-genre="filterSelection" :discs="discs" />
+    <FilterGenreBox @filter-genre="filterSelection" :dischi="discs" />
+    <!-- <FilterAuthorBox /> -->
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
       <div
         class="col-md-2 my-4"
@@ -25,6 +26,8 @@
 <script>
 import axios from "axios";
 import FilterGenreBox from "./FilterGenreBox.vue";
+// import FilterAuthorBox from "./FilterAuthorBox.vue";
+
 export default {
   data() {
     return {
@@ -36,10 +39,11 @@ export default {
 
   components: {
     FilterGenreBox,
+    // FilterAuthorBox,
   },
 
   mounted() {
-    setTimeout(this.callApi, 4 * 1000);
+    setTimeout(this.callApi, 1 * 1000);
   },
   methods: {
     callApi() {
@@ -94,5 +98,9 @@ export default {
   .disc_year {
     color: #758080;
   }
+}
+
+.filterBox {
+  display: inline-block;
 }
 </style>
