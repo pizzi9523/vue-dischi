@@ -6,7 +6,7 @@
       id="selectGenre"
       @change="$emit('filter-genre', genreSelected)"
     >
-      <option selected value="All">All</option>
+      <option value="">All</option>
       <option value="Rock">Rock</option>
       <option value="Pop">Pop</option>
       <option value="Jazz">Jazz</option>

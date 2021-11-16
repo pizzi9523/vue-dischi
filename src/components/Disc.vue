@@ -30,7 +30,7 @@ export default {
     return {
       discs: [],
       loading: true,
-      selectedItem: "All",
+      selectedItem: "",
     };
   },
 
@@ -63,7 +63,7 @@ export default {
   },
   computed: {
     filteredGenere() {
-      if (this.selectedItem === "All") {
+      if (this.selectedItem === "") {
         return this.discs;
       } else {
         const filteredGenere = this.discs.filter((disc) => {
