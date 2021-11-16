@@ -7,8 +7,8 @@
       @change="$emit('filter-author', authorSelected)"
     >
       <option value="">All</option>
-      <option v-for="genre in autori" :key="genre" :value="genre">
-        {{ genre }}
+      <option v-for="author in autori" :key="author" :value="author">
+        {{ author }}
       </option>
     </select>
   </div>
@@ -36,7 +36,7 @@ export default {
           allAuthor.push(disco.author);
         }
       });
-      console.log(allAuthor);
+      //console.log(allAuthor);
       return allAuthor;
     },
   },

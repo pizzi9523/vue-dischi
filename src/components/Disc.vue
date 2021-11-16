@@ -1,13 +1,9 @@
 <template>
   <div>
-    <FilterGenreBox @filter-genre="filterSelection" :dischi="discs" />
-    <FilterAuthorBox :dischi="discs" />
+    <FilterGenreBox @filter-genre="filterGenreSelection" :dischi="discs" />
+    <FilterAuthorBox @filter-author="filterAuthorSelection" :dischi="discs" />
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
-      <div
-        class="col-md-2 my-4"
-        v-for="disc in filteredGenere"
-        :key="disc.title"
-      >
+      <div class="col-md-2 my-4" v-for="disc in filteredList" :key="disc.title">
         <div class="disc p-3">
           <img class="p-2" :src="disc.poster" alt="" />
           <h2 class="disc_title text-light p-2">
@@ -33,7 +29,8 @@ export default {
     return {
       discs: [],
       loading: true,
-      selectedItem: "",
+      selectedGenre: "",
+      selectedAuthor: "",
     };
   },
 
@@ -60,21 +57,46 @@ export default {
         });
     },
 
-    filterSelection(selectedGen) {
+    filterGenreSelection(selectedGen) {
       //console.log(selectedGen);
-      this.selectedItem = selectedGen;
+      this.selectedGenre = selectedGen;
+    },
+
+    filterAuthorSelection(selectedAut) {
+      this.selectedAuthor = selectedAut;
     },
   },
   computed: {
-    filteredGenere() {
-      if (this.selectedItem === "") {
+    filteredList() {
+      let filteredGenere = [];
+      if (this.selectedGenre === "" && this.selectedAuthor === "") {
         return this.discs;
-      } else {
-        const filteredGenere = this.discs.filter((disc) => {
-          return disc.genre.includes(this.selectedItem);
+      } else if (this.selectedGenre !== "" && this.selectedAuthor === "") {
+        filteredGenere = this.discs.filter((disc) => {
+          return disc.genre.includes(this.selectedGenre);
         });
         //console.log(filteredCharacter);
+        //console.log(filteredGenere);
         return filteredGenere;
+      } else if (this.selectedAuthor !== "" && this.selectedGenre === "") {
+        const filteredAutore = this.discs.filter((disc) => {
+          return disc.author.includes(this.selectedAuthor);
+        });
+        return filteredAutore;
+      } else if (this.selectedGenre !== "" && this.selectedAuthor !== "") {
+        let fullFiltered = this.discs.filter((disc) => {
+          return (
+            disc.author.includes(this.selectedAuthor) &&
+            disc.genre.includes(this.selectedGenre)
+          );
+        });
+        //console.log(fullFiltered);
+        return fullFiltered;
+
+        //console.log(filteredCharacter);
+      } else {
+        console.log("ERROR");
+        return 0;
       }
     },
   },

@@ -37,7 +37,7 @@ export default {
           allGenre.push(disco.genre);
         }
       });
-      console.log(allGenre);
+      //console.log(allGenre);
       return allGenre;
     },
   },
