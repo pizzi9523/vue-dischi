@@ -1,8 +1,12 @@
 <template>
   <div>
-    <FilterBox />
+    <FilterGenreBox @filter-genre="filterSelection" :discs="discs" />
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
-      <div class="col-md-2 my-4" v-for="disc in discs" :key="disc.title">
+      <div
+        class="col-md-2 my-4"
+        v-for="disc in filteredGenere"
+        :key="disc.title"
+      >
         <div class="disc p-3">
           <img class="p-2" :src="disc.poster" alt="" />
           <h2 class="disc_title text-light p-2">
@@ -20,17 +24,18 @@
 
 <script>
 import axios from "axios";
-import FilterBox from "./FilterBox.vue";
+import FilterGenreBox from "./FilterGenreBox.vue";
 export default {
   data() {
     return {
       discs: [],
       loading: true,
+      selectedItem: "All",
     };
   },
 
   components: {
-    FilterBox,
+    FilterGenreBox,
   },
 
   mounted() {
@@ -49,6 +54,24 @@ export default {
         .catch((error) => {
           console.log(error, "ERRORE");
         });
+    },
+
+    filterSelection(selectedGen) {
+      //console.log(selectedGen);
+      this.selectedItem = selectedGen;
+    },
+  },
+  computed: {
+    filteredGenere() {
+      if (this.selectedItem === "All") {
+        return this.discs;
+      } else {
+        const filteredGenere = this.discs.filter((disc) => {
+          return disc.genre.includes(this.selectedItem);
+        });
+        //console.log(filteredCharacter);
+        return filteredGenere;
+      }
     },
   },
 };
