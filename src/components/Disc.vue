@@ -70,6 +70,20 @@ export default {
     filteredList() {
       if (this.selectedGenre === "" && this.selectedAuthor === "") {
         return this.discs;
+      } else {
+        let fullFiltered = this.discs.filter((disc) => {
+          return (
+            disc.author.includes(this.selectedAuthor) &&
+            disc.genre.includes(this.selectedGenre)
+          );
+        });
+        //console.log(fullFiltered);
+        return fullFiltered;
+        //console.log(filteredCharacter);
+      }
+
+      /* if (this.selectedGenre === "" && this.selectedAuthor === "") {
+        return this.discs;
       } else if (this.selectedGenre !== "" && this.selectedAuthor === "") {
         const filteredGenere = this.discs.filter((disc) => {
           return disc.genre.includes(this.selectedGenre);
@@ -96,7 +110,7 @@ export default {
       } else {
         console.log("ERROR");
         return 0;
-      }
+      } */
     },
   },
 };
@@ -124,6 +138,7 @@ export default {
 .filterBox {
   display: inline-block;
   select {
+    color: black;
     border-radius: 1rem;
     padding: 5px;
   }
