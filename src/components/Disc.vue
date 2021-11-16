@@ -68,11 +68,10 @@ export default {
   },
   computed: {
     filteredList() {
-      let filteredGenere = [];
       if (this.selectedGenre === "" && this.selectedAuthor === "") {
         return this.discs;
       } else if (this.selectedGenre !== "" && this.selectedAuthor === "") {
-        filteredGenere = this.discs.filter((disc) => {
+        const filteredGenere = this.discs.filter((disc) => {
           return disc.genre.includes(this.selectedGenre);
         });
         //console.log(filteredCharacter);
