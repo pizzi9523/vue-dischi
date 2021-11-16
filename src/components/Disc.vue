@@ -1,7 +1,7 @@
 <template>
   <div>
     <FilterGenreBox @filter-genre="filterSelection" :dischi="discs" />
-    <!-- <FilterAuthorBox /> -->
+    <FilterAuthorBox :dischi="discs" />
     <div class="row justify-content-center p-5 text-center" v-if="!loading">
       <div
         class="col-md-2 my-4"
@@ -26,7 +26,7 @@
 <script>
 import axios from "axios";
 import FilterGenreBox from "./FilterGenreBox.vue";
-// import FilterAuthorBox from "./FilterAuthorBox.vue";
+import FilterAuthorBox from "./FilterAuthorBox.vue";
 
 export default {
   data() {
@@ -39,7 +39,7 @@ export default {
 
   components: {
     FilterGenreBox,
-    // FilterAuthorBox,
+    FilterAuthorBox,
   },
 
   mounted() {
