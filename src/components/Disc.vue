@@ -6,11 +6,11 @@
       <div class="col-md-2 my-4" v-for="disc in filteredList" :key="disc.title">
         <div class="disc p-3">
           <img class="p-2" :src="disc.poster" alt="" />
-          <h2 class="disc_title text-light p-2">
+          <h2 class="fs-5 disc_title text-light p-2">
             {{ disc.title.toUpperCase() }}
           </h2>
-          <div class="disc_author fs-4">{{ disc.author }}</div>
-          <div class="disc_year fs-4">{{ disc.year }}</div>
+          <div class="disc_author fs-6">{{ disc.author }}</div>
+          <div class="disc_year fs-6">{{ disc.year }}</div>
         </div>
       </div>
     </div>
