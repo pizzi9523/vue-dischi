@@ -2,20 +2,32 @@
   <div>
     <FilterGenreBox @filter-genre="filterGenreSelection" :dischi="discs" />
     <FilterAuthorBox @filter-author="filterAuthorSelection" :dischi="discs" />
-    <div class="row justify-content-center p-5 text-center" v-if="!loading">
-      <div class="col-md-2 my-4" v-for="disc in filteredList" :key="disc.title">
-        <div class="disc p-3">
-          <img class="p-2" :src="disc.poster" alt="" />
-          <h2 class="fs-5 disc_title text-light p-2">
-            {{ disc.title.toUpperCase() }}
-          </h2>
-          <div class="disc_author fs-6">{{ disc.author }}</div>
-          <div class="disc_year fs-6">{{ disc.year }}</div>
+    <div v-if="!loading">
+      <div v-if="filteredList.length > 0">
+        <div class="row justify-content-center p-5 text-center">
+          <div
+            class="col-md-2 my-4"
+            v-for="disc in filteredList"
+            :key="disc.title"
+          >
+            <div class="disc p-3">
+              <img class="p-2" :src="disc.poster" alt="" />
+              <h2 class="fs-5 disc_title text-light p-2">
+                {{ disc.title.toUpperCase() }}
+              </h2>
+              <div class="disc_author fs-6">
+                {{ disc.author }}
+              </div>
+              <div class="disc_year fs-6">{{ disc.year }}</div>
+            </div>
+          </div>
         </div>
       </div>
+      <div v-else class="text-light p-5 text-center display-1">
+        NOTHING TO SHOW 😢
+      </div>
     </div>
-
-    <div class="display-5 text-light p-5" v-else>Loading...</div>
+    <div class="display-5 text-light p-5 text-center" v-else>Loading...</div>
   </div>
 </template>
 
